@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap");
+body {
+  background-image: url(https://wallpaperaccess.com/full/2825826.gif);
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.final {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.titulo {
+  font-family: "Press Start 2P", cursive;
+  background-color: rgba(69, 9, 97, 0.699);
+  text-align: center;
+  font-size: 6vw;
+  color: white;
+}
+
+h2 {
+  display: inline-block;
+  color: white;
+}
+
+#formu {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+form {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=body.css.map */
+
+/*# sourceMappingURL=body.css.map */
