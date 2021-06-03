@@ -4,7 +4,7 @@ edadverif();
 
 function edadverif( ){
 let edad=parseInt(prompt("cual es tu edad"));
-if( edad > 18){
+if( edad > 182){
     alert("bievenid@")
 }
 else{
