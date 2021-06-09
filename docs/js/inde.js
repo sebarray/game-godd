@@ -29,17 +29,30 @@ const listaJuegos = []
 const juegos = new game()
 edadverif();
 contrador = prompt("cuanto juegos desea ingresar ")
+listaJuegos=createLista(i, contrador,listaJuegos,juegos)
 
 
-for (i = 0; i < contrador; i++) {
-    do{
-    juegos.create()
-    listaJuegos[i] = juegos
-    listaJuegos[i].genero.trim()
-    }while( generoFiltro(listaJuegos[i].genero))
-    console.log(listaJuegos[i])
-    alert(listaJuegos[i])
-}
+
+
+
+
+
+
+
+
+function createLista(i, contrador,  listaJuegos, juegos ){
+
+    for (i = 0; i < contrador; i++) {
+        do{
+        juegos.create()
+        listaJuegos[i] = juegos
+        listaJuegos[i].genero.trim()
+        }while( generoFiltro(listaJuegos[i].genero))
+        console.log(listaJuegos[i])
+        alert(listaJuegos[i])
+    }
+    return listaJuegos
+} 
 
 
 
