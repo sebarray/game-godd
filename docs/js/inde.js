@@ -20,7 +20,26 @@ function edadverif() {
 
 }
 
+function generoFiltro(genero){
+    switch(genero){
+        case"accion":{
+            return false
+        }
+        case"aventura":{
+            return false
 
+        }
+        case"deporte":{
+            return false
+        }
+        default:{
+            console.log("el genero ingresado no es valido")
+            return true
+        }
+
+    }
+
+}
 
 
 let i
@@ -44,23 +63,3 @@ for (i = 0; i < contrador; i++) {
 
 
 
-function generoFiltro(genero){
-    switch(genero){
-        case"accion":{
-            return false
-        }
-        case"aventura":{
-            return false
-
-        }
-        case"deporte":{
-            return false
-        }
-        default:{
-            console.log("el genero ingresado no es valido")
-            return true
-        }
-
-    }
-
-}
