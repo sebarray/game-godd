@@ -1,8 +1,8 @@
 class game {
     constructor() {}
     create() {
-        this.nombre = prompt(" ingresar nombre")
-        this.genero = prompt("ingresar genero").trim()
+        this.nombre = prompt(" ingresar nombre del juego")
+        this.genero = prompt("ingresar genero accion, deporte o aventura").trim()
         this.precio = parseFloat(prompt("ingresar precio"))
 
     }
@@ -19,6 +19,52 @@ function edadverif() {
     }
 
 }
+
+
+
+
+let i
+let contrador
+const listaJuegos = []
+const juegos = new game()
+edadverif();
+contrador = prompt("cuantos juegos desea ingresar ")
+const lista=createLista(i, contrador,listaJuegos,juegos)
+lista.sort((a,b) =>{
+    if(a.precio>b.precio){
+       return -1}
+        else{ if(a.precio<b.precio){       
+             return 1 }
+            else{ return 0 }}
+})
+ console.log(lista);
+
+
+
+
+
+
+
+
+
+function createLista(i, contrador,  listaJuegos, juegos ){
+
+    for (i = 0; i < contrador; i++) {
+        do{
+        juegos.create()
+        listaJuegos.push({
+            nombre:juegos.nombre,
+            genero:juegos.genero,
+            precio:juegos.precio
+        })
+        listaJuegos[i].genero.trim()
+        }while( generoFiltro(listaJuegos[i].genero))
+    }
+    return listaJuegos
+} 
+
+
+
 
 function generoFiltro(genero){
     switch(genero){
@@ -40,26 +86,4 @@ function generoFiltro(genero){
     }
 
 }
-
-
-let i
-let contrador
-const listaJuegos = []
-const juegos = new game()
-edadverif();
-contrador = prompt("cuanto juegos desea ingresar ")
-
-
-for (i = 0; i < contrador; i++) {
-    do{
-    juegos.create()
-    listaJuegos[i] = juegos
-    listaJuegos[i].genero.trim()
-    }while( generoFiltro(listaJuegos[i].genero))
-    console.log(listaJuegos[i])
-    alert(listaJuegos[i])
-}
-
-
-
 
