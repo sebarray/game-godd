@@ -19,34 +19,6 @@ function edadverif() {
     }
 
 }
-
-
-
-
-let i
-let contrador
-const listaJuegos = []
-const juegos = new game()
-edadverif();
-contrador = prompt("cuantos juegos desea ingresar ")
-const lista=createLista(i, contrador,listaJuegos,juegos)
-lista.sort((a,b) =>{
-    if(a.precio>b.precio){
-       return -1}
-        else{ if(a.precio<b.precio){       
-             return 1 }
-            else{ return 0 }}
-})
- console.log(lista);
-
-
-
-
-
-
-
-
-
 function createLista(i, contrador,  listaJuegos, juegos ){
 
     for (i = 0; i < contrador; i++) {
@@ -86,4 +58,32 @@ function generoFiltro(genero){
     }
 
 }
+
+
+
+let i
+let contrador
+const listaJuegos = []
+const juegos = new game()
+edadverif();
+contrador = prompt("cuantos juegos desea ingresar ")
+const lista=createLista(i, contrador,listaJuegos,juegos)
+lista.sort((a,b) =>{
+    if(a.precio>b.precio){
+       return -1}
+        else{ if(a.precio<b.precio){       
+             return 1 }
+            else{ return 0 }}
+})
+ console.log(lista);
+
+
+
+
+
+
+
+
+
+
 
