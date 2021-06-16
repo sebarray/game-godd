@@ -22,22 +22,26 @@ function edadverif() {
 
 
 
+function generoFiltro(genero){
+    switch(genero){
+        case"accion":{
+            return false
+        }
+        case"aventura":{
+            return false
 
-let i
-let contrador
-const listaJuegos = []
-const juegos = new game()
-edadverif();
-contrador = prompt("cuantos juegos desea ingresar ")
-const lista=createLista(i, contrador,listaJuegos,juegos)
-lista.sort((a,b) =>{
-    if(a.precio>b.precio){
-       return -1}
-        else{ if(a.precio<b.precio){       
-             return 1 }
-            else{ return 0 }}
-})
- console.log(lista);
+        }
+        case"deporte":{
+            return false
+        }
+        default:{
+            console.log("el genero ingresado no es valido")
+            return true
+        }
+
+    }
+
+}
 
 
 
@@ -66,23 +70,36 @@ function createLista(i, contrador,  listaJuegos, juegos ){
 
 
 
-function generoFiltro(genero){
-    switch(genero){
-        case"accion":{
-            return false
-        }
-        case"aventura":{
-            return false
+/*for(nom of nombres){
+    console.log(nom.innerHTML)   
+   }   
+const nombres = document.getElementsByClassName('card-title')
+console.log(nombres)
+*/
+let i
+let contrador
+const listaJuegos = []
+const juegos = new game()
+edadverif();
+contrador = prompt("cuantos juegos desea ingresar ")
+const lista=createLista(i, contrador,listaJuegos,juegos)
+lista.sort((a,b) =>{
+    if(a.precio>b.precio){
+       return -1}
+        else{ if(a.precio<b.precio){       
+             return 1 }
+            else{ return 0 }}
+})
+ console.log(lista);
 
-        }
-        case"deporte":{
-            return false
-        }
-        default:{
-            console.log("el genero ingresado no es valido")
-            return true
-        }
 
-    }
-
+ for (const producto of lista) {
+    let contenedor = document.createElement("div");
+    //Definimos el innerHTML del elemento con una plantilla de texto
+    contenedor.innerHTML = `<div class="container bg-dark rounded col-lg-12 text-light">
+                            <h3> genero: ${producto.genero}</h3>
+                            <p>  Producto: ${producto.nombre}</p>
+                            <b> $ ${producto.precio}</b>
+                            </div>`;
+    document.body.appendChild(contenedor);
 }
