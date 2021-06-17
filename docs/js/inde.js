@@ -75,7 +75,7 @@ function createLista(i, contrador,  listaJuegos, juegos ){
    }   
 const nombres = document.getElementsByClassName('card-title')
 console.log(nombres)
-*/
+
 let i
 let contrador
 const listaJuegos = []
@@ -103,3 +103,50 @@ lista.sort((a,b) =>{
                             </div>`;
     document.body.appendChild(contenedor);
 }
+*/
+
+
+
+
+let btnCarrito=document.querySelectorAll('.btnCarrito');
+btnCarrito.forEach((añadir)=>{
+    añadir.addEventListener('click', clickAñadir)
+})
+function clickAñadir(event){
+    const button= event.target;
+    const item= button.closest('.card-body');
+    const tituloItem= item.querySelector('.card-title').textContent;
+    console.log(tituloItem);
+}
+
+
+
+let agregarJuego=document.getElementById('gameNew');
+agregarJuego.addEventListener('click',juegonuevo)
+
+function juegonuevo(event){
+    const button= event.target;
+    const item= button.closest('.addGame');
+
+    const name= item.querySelector('.enterName').value;
+    const photo= item.querySelector('.enterPhoto').value;
+    let contenedor= document.createElement("div")
+    contenedor.setAttribute("Class", "card row  m-3 cardAncho ")
+    contenedor.setAttribute("style","width: 18rem;")
+    contenedor.innerHTML=`
+    <img src="${photo}"
+        class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">${name}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+        <label for="" class="text-success text-xl-center">proximamente</label>
+      
+    </div>
+    `;
+    let principal= document.getElementById('filaCuatro');
+    principal.append(contenedor)
+   
+}
+
+
