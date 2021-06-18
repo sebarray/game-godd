@@ -102,7 +102,7 @@ lista.sort((a,b) =>{
                             <b> $ ${producto.precio}</b>
                             </div>`;
     document.body.appendChild(contenedor);
-}
+} 
 
 
 
