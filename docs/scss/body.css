@@ -29,13 +29,21 @@ h2 {
   color: white;
 }
 
-#formu {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.formu {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 form {
   display: inline-block;
+}
+
+.bg-indigo {
+  background-color: #6B36CF;
+}
+
+.cardAncho {
+  width: 18rem;
 }
 /*# sourceMappingURL=body.css.map */

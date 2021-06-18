@@ -31,19 +31,22 @@ body {
 }
 
 h2, .h2 {
-  font-family: 'Press Start 2P', cursive;
   display: inline-block;
   color: white;
 }
 
-#formu {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.formu {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 form {
   display: inline-block;
+}
+
+.cardAncho {
+  width: 18rem;
 }
 
 :root {

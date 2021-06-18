@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./dist/css/bootstrap.css">
     <script src="./dist/js/bootstrap.js"></script>
-
+    <script src="https://kit.fontawesome.com/1d0e6413ec.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
@@ -15,11 +15,46 @@
 
 
     <h1 class="titulo">good-game</h1>
+
+
+    <div class="offcanvas offcanvas-end bg-indigo" tabindex="-1" id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel" class="text-light">carrito</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"> </button>
+        </div>
+        <div class="offcanvas-body">
+           <div id="listaJuegos">
+
+           </div>
+           <p id="total" class="text-light fs-4"></p>
+        </div>
+          
+
+
+    </div>
+
     <section>
 
 
         <div class="container bg-dark rounded col-lg-12 " id="principal">
-
+            <div class="row d-flex justify-content-center p-4">
+           
+            <input class="col-6 bg-dark text-light" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+            <datalist id="datalistOptions">
+                <option value="San Francisco">
+                <option value="New York">
+                <option value="Seattle">
+                <option value="Los Angeles">
+                <option value="Chicago">
+            </datalist>
+          
+            <div class="col-2">
+            <button class="btn bg-indigo text-light " type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <i
+                    class="fas fa-shopping-cart  fs-5"></i> </button>
+                </div>
+            </div>
             <div id="filaUno" class="row  p-3 final">
                 <div class=""></div>
                 <form action="" class="d-inline-flex p-2 bd-highlight flex-column col-lg-2">
@@ -47,13 +82,13 @@
                     </div>
                     <input type="button" value="aplicar" class="btn btn-primary">
                     <div>
-                        <div class="addGame"> 
+                        <div class="addGame">
                             <label class="fs-4 text-light">Agregar proximos juegos</label>
                             <label class="fs-6 text-light">nombre</label>
                             <input type="text" name="" id="" class="bg-dark text-light  enterName">
-                            <label class="fs-6 text-light">Agregar foto</label>
+                            <label class="fs-6 text-light">direccion de imagen</label>
                             <input type="text" name="" id="" class="bg-dark text-light enterPhoto">
-                            <input type="button" value="Agregar" class="btn btn-primary" id="gameNew">
+                            <input type="button" value="Agregar" class="btn btn-primary mt-4" id="gameNew">
                         </div>
                     </div>
                 </form>
@@ -65,35 +100,35 @@
                     <img src="https://s2.gaming-cdn.com/images/products/6844/271x377/skul-the-hero-slayer-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body ">
-                        <h5 class="card-title tituloItem">skul the hero slayer</h5>
+                        <h5 class="card-title ">skul the hero slayer</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center precioItem">1000$</label>
+                        <label for="" class="text-success text-xl-center precioItem">1000</label>
                     </div>
 
                 </div>
                 <div class="card row  m-3  col-lg-3 " style="width: 18rem;">
                     <img src="https://s1.gaming-cdn.com/images/products/4806/271x377/werewolf-the-apocalypse-earthblood-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title tituloItem">werewolf the apocalypse earthblood</h5>
+                        <h5 class="card-title ">werewolf the apocalypse earthblood</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center" id="presioWerewolf">800$</label>
+                        <label for="" class="text-success text-xl-center precioItem" id="presioWerewolf">800</label>
                     </div>
                 </div>
 
                 <div class="card row  m-3 col-lg-3 " style="width: 18rem;">
                     <img src="https://s1.gaming-cdn.com/images/products/1281/271x377/bardbarian-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
+                        <h5 class="card-title">Bardabarian</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center">1200$</label>
+                        <label for="" class="text-success text-xl-center precioItem">1200</label>
                     </div>
                 </div>
 
@@ -101,35 +136,35 @@
             <div id="filaDos" class="row  p-3 final">
                 <div class="card row  m-3 " style="width: 18rem;">
                     <img src="https://s3.gaming-cdn.com/images/products/4211/271x377/grand-theft-auto-v-premium-online-edition-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">grand theft auto v</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center">400$</label>
+                        <label for="" class="text-success text-xl-center precioItem">400</label>
                     </div>
                 </div>
                 <div class="card row  m-3  " style="width: 18rem;">
                     <img src="https://s3.gaming-cdn.com/images/products/5915/271x377/predator-hunting-grounds-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Predator hunting grounds</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center">1500$</label>
+                        <label for="" class="text-success text-xl-center precioItem">1500</label>
                     </div>
                 </div>
                 <div class="card row  m-3" style="width: 18rem;">
                     <img src="https://s3.gaming-cdn.com/images/products/6773/271x377/crysis-remastered-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">crysis</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center">2300$</label>
+                        <label for="" class="text-success text-xl-center precioItem">2300</label>
                     </div>
                 </div>
             </div>
@@ -137,35 +172,35 @@
             <div id="filaTres" class="row  p-3 final">
                 <div class="card row  m-3" style="width: 18rem;">
                     <img src="https://s2.gaming-cdn.com/images/products/6259/271x377/descenders-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">descenders</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center">100$</label>
+                        <label for="" class="text-success text-xl-center precioItem">100</label>
                     </div>
                 </div>
                 <div class="card row  m-3  " style="width: 18rem;">
                     <img src="https://s3.gaming-cdn.com/images/products/245/271x377/nba-2k14-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">nba 2k14</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
-                        <label for="" class="text-success text-xl-center">3000$</label>
+                        <label for="" class="text-success text-xl-center precioItem">3000</label>
 
                     </div>
                 </div>
                 <div class="card row  m-3" style="width: 18rem;">
                     <img src="https://s1.gaming-cdn.com/images/products/5781/271x377/ao-tennis-2-cover.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">ao tennis 2</h5>
                         <p class="card-text">Some quicke example text to build on the card title and make up the bulk of
                             the card's content.</p>
-                        <label for="" class="text-success text-xl-center">5000$</label>
+                        <label for="" class="text-success text-xl-center precioItem">5000</label>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                     </div>
                 </div>
@@ -174,7 +209,7 @@
 
             <div id="filaCuatro" class="row  p-3 final">
 
-                </div>
+            </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

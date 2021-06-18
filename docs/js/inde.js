@@ -107,22 +107,56 @@ lista.sort((a,b) =>{
 
 
 
-
+let juegosa=[]
 let btnCarrito=document.querySelectorAll('.btnCarrito');
 btnCarrito.forEach((añadir)=>{
-    añadir.addEventListener('click', clickAñadir)
+    añadir.addEventListener('click', clickAñadir, true)
 })
-function clickAñadir(event){
-    const button= event.target;
-    const item= button.closest('.card-body');
-    const tituloItem= item.querySelector('.card-title').textContent;
-    console.log(tituloItem);
-}
-
-
 
 let agregarJuego=document.getElementById('gameNew');
 agregarJuego.addEventListener('click',juegonuevo)
+
+
+
+
+
+
+
+
+
+function clickAñadir(event){
+    
+    let total =document.getElementById('total');
+    let preciototal=0
+    const listah= document.getElementById('listaJuegos')
+    const button= event.target;
+    const item= button.closest('.card');
+    const tituloItem= item.querySelector('.card-title').textContent;
+    const precioItem= item.querySelector('.precioItem').textContent;
+    const imgItem= item.querySelector('.imgItem').src;
+    let contenedor= document.createElement("div") 
+    juegosa.push({nombre:tituloItem, preio:precioItem, foto:imgItem})
+    console.log(juegosa)
+    contenedor.innerHTML=`
+    
+    <div class="card-body text-light">
+        <img src="${juegosa[juegosa.length-1].foto}" class="tamcarrie">     
+        <h5 class="card-title">${juegosa[juegosa.length-1].nombre}  ${juegosa[juegosa.length-1].preio} $</h5>
+      
+    </div>
+    `; 
+
+
+    for (const games of juegosa){
+        preciototal+=parseInt(games.preio)
+    }
+console.log(preciototal)
+    total.innerHTML=`TOTAL:$${preciototal}`
+    listah.append(contenedor)
+            
+}
+
+
 
 function juegonuevo(event){
     const button= event.target;
@@ -145,8 +179,10 @@ function juegonuevo(event){
     </div>
     `;
     let principal= document.getElementById('filaCuatro');
+  
+
     principal.append(contenedor)
-   
+    
 }
 
 
