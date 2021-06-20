@@ -104,30 +104,58 @@ lista.sort((a,b) =>{
     document.body.appendChild(contenedor);
 }
 */
-
-
-
+let id=0
+let preciototal
 let juegosa=[]
+const btnComprar = document.getElementById('btn-comprar')
+let agregarJuego=document.getElementById('gameNew');
 let btnCarrito=document.querySelectorAll('.btnCarrito');
+let eliminar=document.querySelectorAll('eliminar');
+
+eliminar.forEach(delet=>{
+    delet.addEventListener('click',eliminarCard,true) 
+})
 btnCarrito.forEach((añadir)=>{
     añadir.addEventListener('click', clickAñadir, true)
 })
-
-let agregarJuego=document.getElementById('gameNew');
 agregarJuego.addEventListener('click',juegonuevo)
+btnComprar.addEventListener('click', compra,true)
 
 
 
 
 
+function eliminarCard(){
+}
 
 
 
+
+
+function compra(){
+   let card = document.getElementsByClassName("offcanvas-body")
+     card[0].remove();
+    console.log(card)
+    
+    preciototal=0
+     let index
+
+    for (const games of juegosa){
+        preciototal+=parseInt(games.preio)
+       
+       // index=juegosa.indexOf(game.nombre)
+       // delete  juegosa[index]
+ }
+    juegosa.splice(0, juegosa.length-1);
+    alert(`el pago realizado fue de $${preciototal}` )
+    console.log(juegosa)
+}
 
 function clickAñadir(event){
-    
+    let cont=0
+    let i=0
+    preciototal=0
     let total =document.getElementById('total');
-    let preciototal=0
     const listah= document.getElementById('listaJuegos')
     const button= event.target;
     const item= button.closest('.card');
@@ -135,24 +163,33 @@ function clickAñadir(event){
     const precioItem= item.querySelector('.precioItem').textContent;
     const imgItem= item.querySelector('.imgItem').src;
     let contenedor= document.createElement("div") 
+    console.log(juegosa.length)
+    if(juegosa.length >0){
+    for(i=0; i<juegosa.length; i++ ){
+    if(juegosa[i].nombre===tituloItem){
+        console.log("entro al if")
+     cont++;
+    }}}
+    if (cont == 0){
     juegosa.push({nombre:tituloItem, preio:precioItem, foto:imgItem})
     console.log(juegosa)
     contenedor.innerHTML=`
-    
-    <div class="card-body text-light">
-        <img src="${juegosa[juegosa.length-1].foto}" class="tamcarrie">     
-        <h5 class="card-title">${juegosa[juegosa.length-1].nombre}  ${juegosa[juegosa.length-1].preio} $</h5>
-      
+    <div class="card-body text-light "  >
+        <img  src="${juegosa[juegosa.length-1].foto}" class="tamcarrie ${juegosa[juegosa.length-1].nombre} ">     
+        <h5  class="card-title ${juegosa[juegosa.length-1].nombre} ">${juegosa[juegosa.length-1].nombre}  ${juegosa[juegosa.length-1].preio} $</h5>
+        <i class="fas fa-backspace  ${juegosa[juegosa.length-1].nombre} eliminar"></i>
     </div>
     `; 
-
+        id++
 
     for (const games of juegosa){
         preciototal+=parseInt(games.preio)
     }
-console.log(preciototal)
+   console.log(preciototal)
     total.innerHTML=`TOTAL:$${preciototal}`
     listah.append(contenedor)
+}
+
             
 }
 
@@ -160,8 +197,7 @@ console.log(preciototal)
 
 function juegonuevo(event){
     const button= event.target;
-    const item= button.closest('.addGame');
-
+    const item= button.closest('.addGame')
     const name= item.querySelector('.enterName').value;
     const photo= item.querySelector('.enterPhoto').value;
     let contenedor= document.createElement("div")
