@@ -133,22 +133,29 @@ function eliminarCard(){
 
 
 function compra(){
-   let card = document.getElementsByClassName("offcanvas-body")
-     card[0].remove();
+    const contlista= document.getElementsByClassName("offcanvas-body")
+    const card = document.getElementById("listaJuegos")
+    const lista=document.createElement("div");
+    lista.setAttribute("id","listaJuegos")
+
+     card.remove();
     console.log(card)
     
     preciototal=0
-     let index
 
-    for (const games of juegosa){
-        preciototal+=parseInt(games.preio)
-       
-       // index=juegosa.indexOf(game.nombre)
-       // delete  juegosa[index]
+
+        for(i=0; i< juegosa.length;i++){
+        preciototal+= parseInt( juegosa[i].preio)               
+        juegosa[i].preio="0"
+        juegosa[i].nombre=""
+        juegosa[i].foto=""
  }
-    juegosa.splice(0, juegosa.length-1);
+  
     alert(`el pago realizado fue de $${preciototal}` )
     console.log(juegosa)
+    contlista[0].append(lista)
+    document.getElementById('total').innerHTML="TOTAL 0";
+
 }
 
 function clickAñadir(event){
