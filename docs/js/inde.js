@@ -22,19 +22,19 @@ function edadverif() {
 
 
 
-function generoFiltro(genero){
-    switch(genero){
-        case"accion":{
+function generoFiltro(genero) {
+    switch (genero) {
+        case "accion": {
             return false
         }
-        case"aventura":{
+        case "aventura": {
             return false
 
         }
-        case"deporte":{
+        case "deporte": {
             return false
         }
-        default:{
+        default: {
             console.log("el genero ingresado no es valido")
             return true
         }
@@ -51,21 +51,21 @@ function generoFiltro(genero){
 
 
 
-function createLista(i, contrador,  listaJuegos, juegos ){
+function createLista(i, contrador, listaJuegos, juegos) {
 
     for (i = 0; i < contrador; i++) {
-        do{
-        juegos.create()
-        listaJuegos.push({
-            nombre:juegos.nombre,
-            genero:juegos.genero,
-            precio:juegos.precio
-        })
-        listaJuegos[i].genero.trim()
-        }while( generoFiltro(listaJuegos[i].genero))
+        do {
+            juegos.create()
+            listaJuegos.push({
+                nombre: juegos.nombre,
+                genero: juegos.genero,
+                precio: juegos.precio
+            })
+            listaJuegos[i].genero.trim()
+        } while (generoFiltro(listaJuegos[i].genero))
     }
     return listaJuegos
-} 
+}
 
 
 
@@ -104,27 +104,28 @@ lista.sort((a,b) =>{
     document.body.appendChild(contenedor);
 }
 */
-let id=0
+
+let id = 0
 let preciototal
-let juegosa=[]
+let juegosa = []
 const listaJuegos = document.getElementById("listaJuegos")
 const btnComprar = document.getElementById('btn-comprar')
-let agregarJuego=document.getElementById('gameNew');
-let btnCarrito=document.querySelectorAll('.btnCarrito');
-let eliminar=document.querySelectorAll('eliminar');
-
-Sortable.create(listaJuegos,{
-    animation:150
+let agregarJuego = document.getElementById('gameNew');
+let btnCarrito = document.querySelectorAll('.btnCarrito');
+let eliminar = document.querySelectorAll('eliminar');
+const recuperar =document.getElementById('btn-recuperar');
+Sortable.create(listaJuegos, {
+    animation: 150
 })
-
-eliminar.forEach(delet=>{
-    delet.addEventListener('click',eliminarCard,true) 
+recuperar.addEventListener('click',recuperarJuego)
+eliminar.forEach(delet => {
+    delet.addEventListener('click', eliminarCard, true)
 })
-btnCarrito.forEach((añadir)=>{
+btnCarrito.forEach((añadir) => {
     añadir.addEventListener('click', clickAñadir, true)
 })
-agregarJuego.addEventListener('click',juegonuevo)
-btnComprar.addEventListener('click', compra,true)
+agregarJuego.addEventListener('click', juegonuevo)
+btnComprar.addEventListener('click', compra, true)
 
 
 
@@ -136,6 +137,33 @@ btnComprar.addEventListener('click', compra,true)
 
 
 
+function recuperarJuego() {
+    juegosa = JSON.parse(localStorage.getItem('lista')); 
+    console.log(juegosa)
+    for(game of juegosa){
+        pintar(game);
+        }
+}
+
+
+
+
+function pintar(game){
+    const listah = document.getElementById('listaJuegos')
+    let contenedor = document.createElement("div")
+    contenedor.setAttribute("class", "card_shop")
+    contenedor.innerHTML = `
+    <div class="card-body text-light"  id="${id}" draggable="true"  >
+        <img  src="${game.foto}" class="tamcarrie ${game.nombre} ">     
+        <h5  class="card-title ${game.nombre} nameItem">${game.nombre}</h5>
+        <h5  class="card-title  precioItem"> ${game.preio}$ $</h5>
+        <i class="fas fa-backspace  ${juegosa[juegosa.length-1].nombre} eliminar" id="btn${game.id}"></i>
+    </div>
+    `;
+    listah.append(contenedor)
+    btneliminar = document.getElementById("btn" + game.id)
+    btneliminar.addEventListener('click', eliminarCard)
+}
 
 
 
@@ -144,99 +172,101 @@ btnComprar.addEventListener('click', compra,true)
 
 
 
-
-
-
-
-
-function compra(){
-    const contlista= document.getElementsByClassName("offcanvas-body")
+function compra() {
+    const contlista = document.getElementsByClassName("offcanvas-body")
     const listaJuegos = document.getElementById("listaJuegos")
-    const lista=document.createElement("div");
-    lista.setAttribute("id","listaJuegos")
+    const lista = document.createElement("div");
+    lista.setAttribute("id", "listaJuegos")
 
     listaJuegos.remove();
-  
-    
-    preciototal=0
 
 
-        for(i=0; i< juegosa.length;i++){
-        preciototal+= parseInt( juegosa[i].preio)               
-        juegosa[i].preio="0"
-        juegosa[i].nombre=""
-        juegosa[i].foto=""
-        juegosa[i].id=0.2
- }
- id=0
-  
-    juegosa= juegosa.slice(0 , 0);
-  
-    alert(`el pago realizado fue de $${preciototal}` )
+    preciototal = 0
+
+
+    for (i = 0; i < juegosa.length; i++) {
+        preciototal += parseInt(juegosa[i].preio)
+        juegosa[i].preio = "0"
+        juegosa[i].nombre = ""
+        juegosa[i].foto = ""
+        juegosa[i].id = 0.2
+    }
+    id = 0
+
+    juegosa = juegosa.slice(0, 0);
+
+    alert(`el pago realizado fue de $${preciototal}`)
     console.log(juegosa)
     contlista[0].append(lista)
-    document.getElementById('total').innerHTML="TOTAL 0";
+    document.getElementById('total').innerHTML = "TOTAL 0";
 
 }
 
-function clickAñadir(event){
-    let cont=0
-    let i=0
-    preciototal=0
-    let total =document.getElementById('total');
-    const listah= document.getElementById('listaJuegos')
-    const button= event.target;
-    const item= button.closest('.card');
-    const tituloItem= item.querySelector('.card-title').textContent;
-    const precioItem= item.querySelector('.precioItem').textContent;
-    const imgItem= item.querySelector('.imgItem').src;
-    let contenedor= document.createElement("div")
-    contenedor.setAttribute("class","card_shop") 
+function clickAñadir(event) {
+    let cont = 0
+    let i = 0
+    preciototal = 0
+    let total = document.getElementById('total');
+    const listah = document.getElementById('listaJuegos')
+    const button = event.target;
+    const item = button.closest('.card');
+    const tituloItem = item.querySelector('.card-title').textContent;
+    const precioItem = item.querySelector('.precioItem').textContent;
+    const imgItem = item.querySelector('.imgItem').src;
+    let contenedor = document.createElement("div")
+    contenedor.setAttribute("class", "card_shop")
     console.log(juegosa.length)
-    if(juegosa.length >0){
-    for(i=0; i<juegosa.length; i++ ){
-    if(juegosa[i].nombre===tituloItem){
-        console.log("entro al if")
-     cont++;
-    }}}
-    if (cont == 0){
-    juegosa.push({nombre:tituloItem, preio:precioItem, foto:imgItem, id:id})
-    console.log(juegosa)
-    contenedor.innerHTML=`
+    if (juegosa.length > 0) {
+        for (i = 0; i < juegosa.length; i++) {
+            if (juegosa[i].nombre === tituloItem) {
+                console.log("entro al if")
+                cont++;
+            }
+        }
+    }
+    if (cont == 0) {
+        juegosa.push({
+            nombre: tituloItem,
+            preio: precioItem,
+            foto: imgItem,
+            id: id
+        })
+        console.log(juegosa)
+        contenedor.innerHTML = `
     <div class="card-body text-light"  id="${id}" draggable="true"  >
         <img  src="${juegosa[juegosa.length-1].foto}" class="tamcarrie ${juegosa[juegosa.length-1].nombre} ">     
         <h5  class="card-title ${juegosa[juegosa.length-1].nombre} nameItem">${juegosa[juegosa.length-1].nombre}</h5>
         <h5  class="card-title  precioItem">${juegosa[juegosa.length-1].preio} $</h5>
         <i class="fas fa-backspace  ${juegosa[juegosa.length-1].nombre} eliminar" id="btn${id}"></i>
     </div>
-    `; 
-     
-    for (const games of juegosa){
-        preciototal+=parseInt(games.preio)
+    `;
+        localStorage.setItem('lista', JSON.stringify(juegosa));
+        for (const games of juegosa) {
+            preciototal += parseInt(games.preio)
+        }
+        console.log(preciototal)
+        total.innerHTML = `TOTAL:$${preciototal}`
+        listah.append(contenedor)
+        btneliminar = document.getElementById("btn" + id)
+        btneliminar.addEventListener('click', eliminarCard)
+        id++
+
+
     }
-   console.log(preciototal)
-    total.innerHTML=`TOTAL:$${preciototal}`
-    listah.append(contenedor)
-    btneliminar= document.getElementById("btn"+id)
-    btneliminar.addEventListener('click', eliminarCard)
-    id++
 
-    console.log(btneliminar)
-}
-            
 }
 
 
 
-function juegonuevo(event){
-    const button= event.target;
-    const item= button.closest('.addGame')
-    const name= item.querySelector('.enterName').value;
-    const photo= item.querySelector('.enterPhoto').value;
-    let contenedor= document.createElement("div")
+function juegonuevo(event) {
+    const button = event.target;
+    const item = button.closest('.addGame')
+    const name = item.querySelector('.enterName').value;
+    const photo = item.querySelector('.enterPhoto').value;
+    let contenedor = document.createElement("div")
     contenedor.setAttribute("Class", "card row  m-3 cardAncho ")
-    contenedor.setAttribute("style","width: 18rem;")
-    contenedor.innerHTML=`
+    contenedor.setAttribute("style", "width: 18rem;")
+    contenedor.innerHTML = `
     <img src="${photo}"
         class="card-img-top" alt="...">
     <div class="card-body">
@@ -247,29 +277,29 @@ function juegonuevo(event){
       
     </div>
     `;
-    let principal= document.getElementById('filaCuatro');
-  
+    let principal = document.getElementById('filaCuatro');
+
 
     principal.append(contenedor)
-    
+
 }
 
 
 
-function eliminarCard(event){
-    const button= event.target;
-    const item= button.closest('.card_shop');
-    const cardd= item.querySelector('.card-body')
-    const nameItem= item.querySelector('.nameItem').textContent
-    const precioItem= item.querySelector('.precioItem').textContent
-    preciototal=0;
-    juegosa = juegosa.filter(x => x.nombre !=nameItem );
-  
-    for (const games of juegosa){
-        preciototal+=parseInt(games.preio);
+function eliminarCard(event) {
+    const button = event.target;
+    const item = button.closest('.card_shop');
+    const cardd = item.querySelector('.card-body')
+    const nameItem = item.querySelector('.nameItem').textContent
+    const precioItem = item.querySelector('.precioItem').textContent
+    preciototal = 0;
+    juegosa = juegosa.filter(x => x.nombre != nameItem);
+
+    for (const games of juegosa) {
+        preciototal += parseInt(games.preio);
     }
 
-     document.getElementById('total').innerHTML=`TOTAL: ${preciototal}`;
-      
-     cardd.remove();
+    document.getElementById('total').innerHTML = `TOTAL: ${preciototal}`;
+    localStorage.setItem('lista', JSON.stringify(juegosa));
+    cardd.remove();
 }
