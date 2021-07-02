@@ -35,7 +35,9 @@ h2, .h2 {
 #formu {
   justify-content: space-between;
 }
-
+.ocultar{
+  display:none;
+}
 form {
   display: inline-block;
 }

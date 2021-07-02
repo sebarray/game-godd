@@ -1,131 +1,57 @@
-class game {
-    constructor() {}
-    create() {
-        this.nombre = prompt(" ingresar nombre del juego")
-        this.genero = prompt("ingresar genero accion, deporte o aventura").trim()
-        this.precio = parseFloat(prompt("ingresar precio"))
-
-    }
-}
-
-
-
-function edadverif() {
-    let edad = parseInt(prompt("cual es tu edad"));
-    if (edad > 182) {
-        alert("bievenid@")
-    } else {
-        alert("para comprar asegurate de estar con un mayor")
-    }
-
-}
-
-
-
-function generoFiltro(genero) {
-    switch (genero) {
-        case "accion": {
-            return false
-        }
-        case "aventura": {
-            return false
-
-        }
-        case "deporte": {
-            return false
-        }
-        default: {
-            console.log("el genero ingresado no es valido")
-            return true
-        }
-
-    }
-
-}
-
-
-
-
-
-
-
-
-
-function createLista(i, contrador, listaJuegos, juegos) {
-
-    for (i = 0; i < contrador; i++) {
-        do {
-            juegos.create()
-            listaJuegos.push({
-                nombre: juegos.nombre,
-                genero: juegos.genero,
-                precio: juegos.precio
-            })
-            listaJuegos[i].genero.trim()
-        } while (generoFiltro(listaJuegos[i].genero))
-    }
-    return listaJuegos
-}
-
-
-
-
-/*for(nom of nombres){
-    console.log(nom.innerHTML)   
-   }   
-const nombres = document.getElementsByClassName('card-title')
-console.log(nombres)
-
-let i
-let contrador
-const listaJuegos = []
-const juegos = new game()
-edadverif();
-contrador = prompt("cuantos juegos desea ingresar ")
-const lista=createLista(i, contrador,listaJuegos,juegos)
-lista.sort((a,b) =>{
-    if(a.precio>b.precio){
-       return -1}
-        else{ if(a.precio<b.precio){       
-             return 1 }
-            else{ return 0 }}
-})
- console.log(lista);
-
-
- for (const producto of lista) {
-    let contenedor = document.createElement("div");
-    //Definimos el innerHTML del elemento con una plantilla de texto
-    contenedor.innerHTML = `<div class="container bg-dark rounded col-lg-12 text-light">
-                            <h3> genero: ${producto.genero}</h3>
-                            <p>  Producto: ${producto.nombre}</p>
-                            <b> $ ${producto.precio}</b>
-                            </div>`;
-    document.body.appendChild(contenedor);
-}
-*/
-
-let id = 0
-let preciototal
-let juegosa = []
-const listaJuegos = document.getElementById("listaJuegos")
-const btnComprar = document.getElementById('btn-comprar')
-let agregarJuego = document.getElementById('gameNew');
+$(() => {
+    console.log("dom completo")
+});
+let id = 0;
+let preciototal;
+let juegosa = [];
+const listaJuegos = document.getElementById("listaJuegos");
 let btnCarrito = document.querySelectorAll('.btnCarrito');
 let eliminar = document.querySelectorAll('eliminar');
-const recuperar =document.getElementById('btn-recuperar');
+let cardss = document.querySelectorAll('.card')
+const recuperar = $("#btn-recuperar");
+let search = $("#search")
+const btnComprar = $('#btn-comprar');
+let agregarJuego = $('#gameNew');
+
+
+
+
+
+
+agregarJuego.on('click', juegonuevo);
+recuperar.on('click', recuperarJuego);
+eliminar.forEach(delet => {
+    delet.on('click', eliminarCard)
+});
+
+
+search.on('keyup', (e) => {
+    console.log(e.target.value)
+    cardss.forEach(function (c) {
+        c.textContent.toLowerCase().includes(e.target.value) ? c.classList.remove("oc") : c.classList.add("oc")
+    })
+
+
+
+});
+
+btnComprar.on('click', compra);
+
 Sortable.create(listaJuegos, {
     animation: 150
-})
-recuperar.addEventListener('click',recuperarJuego)
-eliminar.forEach(delet => {
-    delet.addEventListener('click', eliminarCard, true)
-})
+});
+
+
 btnCarrito.forEach((añadir) => {
     añadir.addEventListener('click', clickAñadir, true)
-})
-agregarJuego.addEventListener('click', juegonuevo)
-btnComprar.addEventListener('click', compra, true)
+});
+
+
+
+
+
+
+
 
 
 
@@ -138,17 +64,27 @@ btnComprar.addEventListener('click', compra, true)
 
 
 function recuperarJuego() {
-    juegosa = JSON.parse(localStorage.getItem('lista')); 
+    juegosa = JSON.parse(localStorage.getItem('lista'));
+    total = 0
+    //traigo el contenido del localStorage
     console.log(juegosa)
-    for(game of juegosa){
+    for (game of juegosa) {
+        total = parseInt(game.preio) + total
+        console.log(total)
         pintar(game);
-        }
+    }
+
+    $('#total')[0].innerHTML = "TOTAL:" + total
+
+
+
+
 }
 
 
 
 
-function pintar(game){
+function pintar(game) {
     const listah = document.getElementById('listaJuegos')
     let contenedor = document.createElement("div")
     contenedor.setAttribute("class", "card_shop")
@@ -241,6 +177,8 @@ function clickAñadir(event) {
     </div>
     `;
         localStorage.setItem('lista', JSON.stringify(juegosa));
+        //localstorage
+
         for (const games of juegosa) {
             preciototal += parseInt(games.preio)
         }
@@ -277,7 +215,7 @@ function juegonuevo(event) {
       
     </div>
     `;
-    let principal = document.getElementById('filaCuatro');
+    let principal = document.getElementById('filaUno');
 
 
     principal.append(contenedor)
