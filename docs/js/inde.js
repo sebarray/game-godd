@@ -1,6 +1,7 @@
 $(() => {
     console.log("dom completo")
 });
+let  j
 let id = 0;
 let preciototal;
 let juegosa = [];
@@ -12,8 +13,15 @@ const recuperar = $("#btn-recuperar");
 let search = $("#search")
 const btnComprar = $('#btn-comprar');
 let agregarJuego = $('#gameNew');
+let shows = $('.shows');
 
-
+    shows.on('click',(event)=>{
+        const button = event.target;
+        const item = button.closest('.card');
+        tx= item.querySelector('.card-text')
+        $('show')
+        $(tx).toggle("fast");
+    })
 
 
 
@@ -85,6 +93,7 @@ function recuperarJuego() {
 
 
 function pintar(game) {
+
     const listah = document.getElementById('listaJuegos')
     let contenedor = document.createElement("div")
     contenedor.setAttribute("class", "card_shop")
@@ -180,6 +189,7 @@ function clickAñadir(event) {
         //localstorage
 
         for (const games of juegosa) {
+             const item = button.closest('.card');
             preciototal += parseInt(games.preio)
         }
         console.log(preciototal)
@@ -230,8 +240,12 @@ function eliminarCard(event) {
     const cardd = item.querySelector('.card-body')
     const nameItem = item.querySelector('.nameItem').textContent
     const precioItem = item.querySelector('.precioItem').textContent
+    let cb= item.querySelector('.card-body')
+    const cd =button.closest('.card-body')
+    $(cd).parent().slideUp("slow");
     preciototal = 0;
     juegosa = juegosa.filter(x => x.nombre != nameItem);
+
 
     for (const games of juegosa) {
         preciototal += parseInt(games.preio);
@@ -239,5 +253,5 @@ function eliminarCard(event) {
 
     document.getElementById('total').innerHTML = `TOTAL: ${preciototal}`;
     localStorage.setItem('lista', JSON.stringify(juegosa));
-    cardd.remove();
+   // cardd.remove();
 }
