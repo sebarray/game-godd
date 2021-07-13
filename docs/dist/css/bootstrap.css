@@ -26,10 +26,16 @@ body {
   font-size: 6vw;
   color: white;
 }
+.fav{
+  color: #ffcd39;
+}
 
 h2, .h2 {
   display: inline-block;
   color: white;
+}
+.cen{
+  text-align:center;
 }
 
 #formu {

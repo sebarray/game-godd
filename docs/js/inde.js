@@ -1,27 +1,77 @@
 $(() => {
     console.log("dom completo")
 });
-let  j
+listFav=[]
+let j = 0
 let id = 0;
 let preciototal;
 let juegosa = [];
 const listaJuegos = document.getElementById("listaJuegos");
 let btnCarrito = document.querySelectorAll('.btnCarrito');
 let eliminar = document.querySelectorAll('eliminar');
-let cardss = document.querySelectorAll('.card')
+const cardss = document.querySelectorAll('.card')
+let btnFiltro = document.getElementById('filtrog')
+let radiobt = document.querySelectorAll('.radiobt')
 const recuperar = $("#btn-recuperar");
 let search = $("#search")
 const btnComprar = $('#btn-comprar');
 let agregarJuego = $('#gameNew');
 let shows = $('.shows');
+let pokeClick = $("#pokeClick");
+let url = "https://pokeapi.co/api/v2/pokemon/"
+const pres =document.querySelectorAll('.precioItem')
+btnclear = document.querySelector("#limpiar")
+ let rangemin= document.getElementById("rangemin")
+ let outmin=document.getElementById('outmin')
+ let outmax = document.getElementById('outmax')
+ let rangemax = document.getElementById('rangemax')
+let urli
+for (j = 1; j < 8; j++) {
+    urli = url + j
+    pokepaint(urli)
+}
+rangemin.onchange=() =>{
+    outmin.innerHTML=rangemin.value
+}
 
-    shows.on('click',(event)=>{
-        const button = event.target;
-        const item = button.closest('.card');
-        tx= item.querySelector('.card-text')
-        $('show')
-        $(tx).toggle("fast");
-    })
+rangemax.onchange=()=>{
+    outmax.innerHTML=rangemax.value
+}
+
+
+btnclear.addEventListener('click', ()=>{
+    for(j=0; i<cardss.length; j++){
+        cardss[j].classList.remove("oc")
+    }
+})
+
+btnFiltro.addEventListener('click', (e) => {
+   
+    let cardv
+    rmax = parseInt(document.getElementById('outmax').value)
+    rmin = parseInt(document.getElementById('outmin').value)
+    for (i = 0; i < radiobt.length; i++) {
+        if (radiobt[i].checked) {
+            for(j=0; j< cardss.length;j++){
+                cardv=parseInt(pres[j].innerText)
+                cardss[j].textContent.toLowerCase().includes(radiobt[i].value) && cardv <= rmax && cardv >= rmin ? cardss[j].classList.remove("oc") : cardss[j].classList.add("oc")
+         
+            }
+
+        }
+    }
+}, true)
+
+
+
+pokeClick.on('click', pokeAD)
+shows.on('click', (event) => {
+    const button = event.target;
+    const item = button.closest('.card');
+    tx = item.querySelector('.card-text')
+    $('show')
+    $(tx).toggle("fast");
+})
 
 
 
@@ -34,7 +84,7 @@ eliminar.forEach(delet => {
 
 
 search.on('keyup', (e) => {
-    console.log(e.target.value)
+
     cardss.forEach(function (c) {
         c.textContent.toLowerCase().includes(e.target.value) ? c.classList.remove("oc") : c.classList.add("oc")
     })
@@ -58,14 +108,43 @@ btnCarrito.forEach((añadir) => {
 
 
 
+function pokeAD() {
+    let nombre = document.getElementById("pokeAdd").value
+    nombre = nombre.toLowerCase();
+    url = "https://pokeapi.co/api/v2/pokemon/" + nombre
+    pokepaint(url)
+
+}
 
 
 
 
 
+function pokepaint(url) {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
 
+            poke = document.getElementsByClassName('poke')
+            conte = document.createElement('div');
+            conte.setAttribute('class', 'w-auto')
+            conte.innerHTML = `
+     <div class="card bg-dark mb-4" style="width: 18rem;">
+  <img src="${data.sprites.front_default}" class="card-img-top" alt="...">
+  <div class="card-body mb-4">
+    <h3 class="text-white cen">${data.name}  </h3>
+  </div>
 
+</div>
+      `
+            poke[0].appendChild(conte)
+           
+                    
+        
+        })
+    
 
+}
 
 
 
@@ -75,10 +154,9 @@ function recuperarJuego() {
     juegosa = JSON.parse(localStorage.getItem('lista'));
     total = 0
     //traigo el contenido del localStorage
-    console.log(juegosa)
+
     for (game of juegosa) {
         total = parseInt(game.preio) + total
-        console.log(total)
         pintar(game);
     }
 
@@ -140,8 +218,15 @@ function compra() {
 
     juegosa = juegosa.slice(0, 0);
 
-    alert(`el pago realizado fue de $${preciototal}`)
-    console.log(juegosa)
+    swal({
+        title: "Good job!",
+        text: `el pago realizado fue de $${preciototal}`,
+        icon: "success",
+        button: "ok",
+    });
+
+
+
     contlista[0].append(lista)
     document.getElementById('total').innerHTML = "TOTAL 0";
 
@@ -160,11 +245,10 @@ function clickAñadir(event) {
     const imgItem = item.querySelector('.imgItem').src;
     let contenedor = document.createElement("div")
     contenedor.setAttribute("class", "card_shop")
-    console.log(juegosa.length)
     if (juegosa.length > 0) {
         for (i = 0; i < juegosa.length; i++) {
             if (juegosa[i].nombre === tituloItem) {
-                console.log("entro al if")
+
                 cont++;
             }
         }
@@ -176,7 +260,7 @@ function clickAñadir(event) {
             foto: imgItem,
             id: id
         })
-        console.log(juegosa)
+
         contenedor.innerHTML = `
     <div class="card-body text-light"  id="${id}" draggable="true"  >
         <img  src="${juegosa[juegosa.length-1].foto}" class="tamcarrie ${juegosa[juegosa.length-1].nombre} ">     
@@ -189,10 +273,10 @@ function clickAñadir(event) {
         //localstorage
 
         for (const games of juegosa) {
-             const item = button.closest('.card');
+            const item = button.closest('.card');
             preciototal += parseInt(games.preio)
         }
-        console.log(preciototal)
+
         total.innerHTML = `TOTAL:$${preciototal}`
         listah.append(contenedor)
         btneliminar = document.getElementById("btn" + id)
@@ -240,8 +324,8 @@ function eliminarCard(event) {
     const cardd = item.querySelector('.card-body')
     const nameItem = item.querySelector('.nameItem').textContent
     const precioItem = item.querySelector('.precioItem').textContent
-    let cb= item.querySelector('.card-body')
-    const cd =button.closest('.card-body')
+    let cb = item.querySelector('.card-body')
+    const cd = button.closest('.card-body')
     $(cd).parent().slideUp("slow");
     preciototal = 0;
     juegosa = juegosa.filter(x => x.nombre != nameItem);
@@ -253,5 +337,5 @@ function eliminarCard(event) {
 
     document.getElementById('total').innerHTML = `TOTAL: ${preciototal}`;
     localStorage.setItem('lista', JSON.stringify(juegosa));
-   // cardd.remove();
+    // cardd.remove();
 }

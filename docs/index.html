@@ -9,10 +9,7 @@
     <script src="./dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="./dist/css/mycss.css">
     <script src="https://kit.fontawesome.com/1d0e6413ec.js" crossorigin="anonymous"></script>
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>Document</title>
 </head>
 
@@ -72,27 +69,26 @@
                 <form action="" class="d-inline-flex p-2 bd-highlight flex-column col-lg-2">
                     <label for="" class="text-light m-1">rango de precios:</label>
                     <label for="rangeSlider_inversed" class="text-light">Mínimo:</label>
-                    <input id="rangemin" type="range" min="100" max="5000" value="5000" class="text-light"
-                        onchange="document.getElementById('outmin').value=value">
+                    <input id="rangemin" type="range" min="100" max="5000" value="5000" class="text-light"  >
                     <output class="text-light" id="outmin">100</output>
                     <label for="rangeSlider" class="text-light">Máximo:</label>
-                    <input id="rangemax" type="range" min="100" max="5000" value="100"
-                        onchange="document.getElementById('outmax').value=value">
+                    <input id="rangemax" type="range" min="100" max="5000" value="100">
                     <output class="text-light" id="outmax">5000</output>
                     <label for="" class="text-light m-1">categoria:</label>
                     <div class="d-flex justify-content-between align-items-center">
-                        <input name="identificador" value="AMD_MOBO" id="AMD_MOBO" type="radio">
-                        <label for="AMD_MOBO" class="text-light">aventura</label>
+                        <input name="radio" value="aventura" id="aventura" type="radio" class="radiobt">
+                        <label for="AMD_MOBO" class="text-light checkc">aventura</label>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <input name="identificador" value="Intel_CPU" id="Intel_CPU" type="radio">
-                        <label for="Intel_CPU" class="text-light">disparos</label>
+                        <input name="radio" value="disparos" id="disparos" type="radio" class="radiobt">
+                        <label for="Intel_CPU" class="text-light checkc">disparos</label>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <input name="identificador" value="Intel_MOBO" id="Intel_MOBO" type="radio">
-                        <label for="Intel_MOBO" class="text-light">deporte</label>
+                        <input name="radio" value="deporte" id="deporte" type="radio" class="radiobt">
+                        <label for="Intel_MOBO" class="text-light checkc">deporte</label>
                     </div>
-                    <input type="button" value="aplicar" class="btn btn-primary">
+                    <input type="button" value="aplicar " class="btn btn-primary " id="filtrog">
+                    <input type="button" value="limpiar " class="btn btn-primary mt-2  " id="limpiar">
                     <div>
                         <div class="addGame">
                             <label class="fs-4 text-light">Agregar proximos juegos</label>
@@ -104,125 +100,163 @@
                         </div>
                     </div>
                 </form>
- 
 
 
 
-                <div class="card row   m-3 col-lg-3 " style="width: 18rem;">
+
+                <div class="card row   m-3 col-lg-3 " style="width: 18rem;" value="1000">
                     <img src="https://s2.gaming-cdn.com/images/products/6844/271x377/skul-the-hero-slayer-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body ">
                         <h5 class="card-title ">skul the hero slayer</h5>
+                        <p>aventura</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows"> 
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">1000</label>
                     </div>
 
                 </div>
-                <div class="card row  m-3  col-lg-3 " style="width: 18rem;">
+                <div class="card row  m-3  col-lg-3 " style="width: 18rem;" value=800>
                     <img src="https://s1.gaming-cdn.com/images/products/4806/271x377/werewolf-the-apocalypse-earthblood-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title ">werewolf the apocalypse earthblood</h5>
+                        <p>aventura</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem" id="presioWerewolf">800</label>
                     </div>
                 </div>
 
-                <div class="card row  m-3 col-lg-3 " style="width: 18rem;">
+                <div class="card row  m-3 col-lg-3 " style="width: 18rem;" value=1200>
                     <img src="https://s1.gaming-cdn.com/images/products/1281/271x377/bardbarian-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Bardabarian</h5>
+                        <p>aventura</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">1200</label>
                     </div>
                 </div>
 
-      
-           
-                <div class="card row  m-3 " style="width: 18rem;">
+
+
+                <div class="card row  m-3 " style="width: 18rem;" value=400>
                     <img src="https://s3.gaming-cdn.com/images/products/4211/271x377/grand-theft-auto-v-premium-online-edition-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">grand theft auto v</h5>
+                        <p>disparos</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">400</label>
                     </div>
                 </div>
-                <div class="card row  m-3  " style="width: 18rem;">
+                <div class="card row  m-3  " style="width: 18rem;" value=1500>
                     <img src="https://s3.gaming-cdn.com/images/products/5915/271x377/predator-hunting-grounds-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Predator hunting grounds</h5>
+                        <p>disparos</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">1500</label>
                     </div>
                 </div>
-                <div class="card row  m-3" style="width: 18rem;">
+                <div class="card row  m-3" style="width: 18rem;" value=2300>
                     <img src="https://s3.gaming-cdn.com/images/products/6773/271x377/crysis-remastered-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">crysis</h5>
+                        <p>disparos</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">2300</label>
                     </div>
                 </div>
-     
 
-       
-                <div class="card row  m-3" style="width: 18rem;">
+
+
+                <div class="card row  m-3" style="width: 18rem;" value=100>
                     <img src="https://s2.gaming-cdn.com/images/products/6259/271x377/descenders-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">descenders</h5>
+                        <p>deporte</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">100</label>
                     </div>
                 </div>
-                <div class="card row  m-3  " style="width: 18rem;">
+                <div class="card row  m-3  " style="width: 18rem;" value=3000>
                     <img src="https://s3.gaming-cdn.com/images/products/245/271x377/nba-2k14-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">nba 2k14</h5>
+                        <p>deporte</p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                         <label for="" class="text-success text-xl-center precioItem">3000</label>
 
                     </div>
                 </div>
-                <div class="card row  m-3" style="width: 18rem;">
+                <div class="card row  m-3" style="width: 18rem;" value=5000>
                     <img src="https://s1.gaming-cdn.com/images/products/5781/271x377/ao-tennis-2-cover.jpg"
                         class="card-img-top imgItem" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">ao tennis 2</h5>
+                        <p>deporte</p>
                         <p class="card-text">Some quicke example text to build on the card title and make up the bulk of
-                            the card's content.</p> <input type="button" value="mostrar mas" class="btn btn-primary shows">
+                            the card's content.</p> <input type="button" value="mostrar mas"
+                            class="btn btn-primary shows">
                         <label for="" class="text-success text-xl-center precioItem">5000</label>
                         <input type="button" class="btn btn-primary btnCarrito" value="añadir al carrito">
                     </div>
                 </div>
-            </div>  
+            </div>
             <div id="filaCuatro" class="row  p-3 final">
             </div>
-        </div>        
+        </div>
     </section>
-   
+
+
+    <section>
+        <div class="container  bg-dark ">
+
+            <h2 class="cen col-12">pokemones</h2>
+            <P class="text-light fs-3">Somos un poko frikis y nos gustaria saber que pokemon falta para vos si no lo
+                vez agregalo </P>
+            <input type="text" name="" id="pokeAdd" class="bg-dark text-light  mb-5">
+            <input type="submit" value="agregar" id="pokeClick" class="btn btn-primary ">
+            <div class="row poke d-flex">
+
+            </div>
+                
+              
+        </div>
+
+    </section>
+
     <!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
+    <script src="https://kit.fontawesome.com/1d0e6413ec.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
